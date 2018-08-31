@@ -251,7 +251,8 @@ installedPckgs <- installed.packages()[,"Package"]
 ###Define the list of desired libraries
 pckgListBIOC <- c("Biobase", "limma", "breastCancerNKI", "gdata")
 ###Source the biocLite.R script from Bioconductor
-source("http://bioconductor.org/biocLite.R")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
 ###Load the packages, install them from Bioconductor if needed
 for (pckg in pckgListBIOC) {
 	if (! pckg %in% installedPckgs) biocLite(pckg)
