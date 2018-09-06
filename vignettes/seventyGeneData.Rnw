@@ -255,7 +255,7 @@ if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 ###Load the packages, install them from Bioconductor if needed
 for (pckg in pckgListBIOC) {
-	if (! pckg %in% installedPckgs) biocLite(pckg)
+	if (! pckg %in% installedPckgs) BiocManager::install(pckg)
 	require(pckg, character.only=TRUE)
 }
 @
