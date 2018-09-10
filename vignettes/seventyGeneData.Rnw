@@ -250,7 +250,7 @@ and the feature annotation.
 installedPckgs <- installed.packages()[,"Package"]
 ###Define the list of desired libraries
 pckgListBIOC <- c("Biobase", "limma", "breastCancerNKI", "gdata")
-###Source the biocLite.R script from Bioconductor
+###Use the BiocManager package from Bioconductor
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 ###Load the packages, install them from Bioconductor if needed
