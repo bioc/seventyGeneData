@@ -2,7 +2,7 @@ Package: seventyGeneData
 Type: Package
 Title: ExpressionSets from the van't Veer and Van de
       Vijver breast cancer studies
-Version: 1.17.3
+Version: 1.18.0
 Date: 2013-05-25
 Description: Gene expression data for the two breast cancer cohorts published by van't Veer and Van de Vijver in 2002
 biocViews: ExperimentData, CancerData, BreastCancerData, MicroarrayData
