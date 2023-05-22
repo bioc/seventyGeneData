@@ -2,14 +2,14 @@ Package: seventyGeneData
 Type: Package
 Title: ExpressionSets from the van't Veer and Van de
       Vijver breast cancer studies
-Version: 1.37.0
+Version: 1.37.3
 Date: 2013-05-25
 Description: Gene expression data for the two breast cancer cohorts published by van't Veer and Van de Vijver in 2002
 biocViews: ExperimentData, CancerData, BreastCancerData, MicroarrayData
 Author: Luigi Marchionni <marchion@jhu.edu>
 Maintainer: Luigi Marchionni <marchion@jhu.edu>
 Depends: R (>= 2.13.0)
-Suggests: Biobase, gdata, limma, breastCancerNKI
+Suggests: Biobase, readxls, limma, breastCancerNKI
 License: Artistic-2.0
 URL: http://luigimarchionni.org/breastTSP.html
 LazyLoad: yes

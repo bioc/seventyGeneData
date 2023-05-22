@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 % \VignetteIndexEntry{Working with the seventyGeneData package}
-% \VignetteDepends{Biobase, gdata, limma}
+% \VignetteDepends{Biobase, readxl, limma}
 % \VignetteKeywords{ExperimentData, Cancer, RNAExpressionData}
 % \VignettePackage{seventyGeneData}
 
@@ -239,7 +239,7 @@ lapply(urlList, function(x) {
 
 Below is the code to download and install the \Rpackage{breastCancerNKI}
 annotation metadata package from \Bioc, along with other required libraries
-if the are not available (e.g \Rpackage{gdata}).
+if the are not available (e.g \Rpackage{readxl}).
 As shown below the \Rpackage{breastCancerNKI} contains a unique
 instance of class \Rclass{ExpressionSet} for both cohorts,
 wich includes the expression data, the phenotypic information,
@@ -249,7 +249,7 @@ and the feature annotation.
 ###Get the list of available packages
 installedPckgs <- installed.packages()[,"Package"]
 ###Define the list of desired libraries
-pckgListBIOC <- c("Biobase", "limma", "breastCancerNKI", "gdata")
+pckgListBIOC <- c("Biobase", "limma", "breastCancerNKI", "readxl")
 ###Use the BiocManager package from Bioconductor
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
@@ -305,22 +305,22 @@ contained in the files obtained from the Nature and the NKI websites:
 
 <<assembleAnnotation2, eval=TRUE, echo=TRUE, cache=FALSE>>=
 ###Load the library
-require(gdata)
+require(readxl)
 ###Read GBACC information for van't Veer dataset
 myFile<- system.file("extdata/vantVeer", "ArrayNomenclature_contig_accession.xls", 
 		      package = "seventyGeneData")
-featAcc <- read.xls(myFile, skip=0, header=TRUE, stringsAsFactors=FALSE)
+featAcc <- read_xls(myFile)
 ###Read seq information for van't Veer dataset
 myFile <- system.file("extdata/vantVeer", "ProbeSeq.xls", 
 		      package = "seventyGeneData")
-featSeq <- read.xls(myFile, skip=0, header=TRUE, stringsAsFactors=FALSE)
+featSeq <- read_xls(myFile)
 ###Read 70-genes signature information for van't Veer dataset
 myFile <- system.file("extdata/vantVeer", "415530a-s9.xls", 
 		      package = "seventyGeneData")
-gns231 <- read.xls(myFile, skip=0, header=TRUE, stringsAsFactors=FALSE)
+gns231 <- read_xls(myFile)
 ###Remove special characters in the colums header,
 ###which are due to white spaces present in the Excel files
-colnames(gns231) <- gsub("\\.\\.", "", colnames(gns231))
+colnames(gns231) <- gsub("\\s|#", "", colnames(gns231))
 ###Remove GO annotation
 gns231 <- gns231[, -grep("sp_xref_keyword_list", colnames(gns231))]
 ###Reorder the genes in decreasing order by absolute correlation
@@ -371,7 +371,7 @@ However the annotation information contained in these spreadsheets has different
 with unmatched quotes and a variable number of columns corresponding to
 the systematic feature name, the gene name, and its annotation.
 Hence such spreadsheets are somewhat difficult to read directly into {\R}
-with the \Rfunction{read.xls} function contained in the \Rpackage{gdata}.
+with the \Rfunction{read_xls} function contained in the \Rpackage{readxl}.
 For this reason, after extracting the corresponding compressed Excel files,
 we have saved all the spreadsheets as TAB-delimited text files externally,
 and we have provided them with the \Rpackage{seventyGeneData} package
@@ -393,7 +393,7 @@ gene expression measurements:
 <<assembleVantVeer, eval=TRUE, echo=TRUE, cache=FALSE>>=
 ###Load the library
 require(Biobase)
-require(gdata)
+require(readxl)
 ###Check presence of dowloaded file
 filesVtVloc <- system.file("extdata/vantVeer", package = "seventyGeneData")
 dir(filesVtVloc)
@@ -409,7 +409,7 @@ associated with the samples analyzed in the van't Veer cohort:
 myFile <- system.file("extdata/vantVeer", "415530a-s8.xls", 
 		      package = "seventyGeneData")
 ###Read phenotypic information
-phenoVtV <- read.xls(myFile, skip=0, header=TRUE, stringsAsFactors=FALSE)
+phenoVtV <- as.data.frame(read_xls(myFile))
 ###Show Phenotypic information
 str(phenoVtV)
 @
@@ -423,7 +423,9 @@ in the expression data and phenotypic information tables.
 <<assembleVantVeer3, eval=TRUE, echo=TRUE, cache=FALSE>>=
 ###Remove the special characters in the colums headers
 ###due to white spaces present in the Excel file
-colnames(phenoVtV) <- gsub("\\.$", "", gsub("\\.$", "", colnames(phenoVtV)))
+
+colnames(phenoVtV) <- gsub("\\s|#", "", colnames(phenoVtV))
+
 ####Remove columns that do not contain useful information
 phenoVtV <- phenoVtV[ , apply(phenoVtV, 2, function(x) length(unique(x)) > 1 )]
 phenoVtV$SampleName <- paste("Sample", phenoVtV$Sample)
@@ -656,7 +658,7 @@ files obtained from the NKI website.
 ##################################################
 ###Load the library
 require(Biobase)
-require(gdata)
+require(readxl)
 ##################################################
 ###Check presence of dowloaded files
 dir("../inst/extdata/vanDeVijver")
@@ -693,7 +695,7 @@ in the expression data and phenotypic information tables.
 <<assembelVanDeVijver2, eval=TRUE, echo=TRUE, cache=FALSE>>=
 ###Read phenotypic information
 myFile <- dir(myTmpDir, full.names=TRUE, pattern="Table1_ClinicalData_Table.xls")
-phenoVdV <- read.xls(myFile, skip=2, header=TRUE, stringsAsFactors=FALSE)
+phenoVdV <- as.data.frame(read_xls(myFile, skip = 3))
 ####Remove columns that do not contain useful information
 phenoVdV <- phenoVdV[ , apply(phenoVdV, 2, function(x) length(unique(x)) > 1 )]
 phenoVdV$SampleName <- paste("Sample", phenoVdV$SampleID)
