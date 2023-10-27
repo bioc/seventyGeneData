@@ -307,7 +307,7 @@ contained in the files obtained from the Nature and the NKI websites:
 ###Load the library
 require(readxl)
 ###Read GBACC information for van't Veer dataset
-myFile<- system.file("extdata/vantVeer", "ArrayNomenclature_contig_accession.xls", 
+myFile <- system.file("extdata/vantVeer", "ArrayNomenclature_contig_accession.xls", 
 		      package = "seventyGeneData")
 featAcc <- read_xls(myFile)
 ###Read seq information for van't Veer dataset
