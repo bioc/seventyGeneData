@@ -213,7 +213,7 @@ urlList <- c(
 	     )
 ###Dowload all files from Nature and NKI
 lapply(urlList, function(x) {
-	download.file(x, destfile=paste("../extdata/vantVeer/", gsub(".+/", "", x), sep=""),
+	download.file(x, destfile=paste("./inst/extdata/vantVeer/", gsub(".+/", "", x), sep=""),
 		      quiet = FALSE, mode = "w", cacheOK = TRUE)
 })
 @
@@ -231,7 +231,7 @@ nkiUrl <- "http://bioinformatics.nki.nl/data/"
 urlList <- paste(nkiUrl, sep="", c("nejm_table1.zip", "ZipFiles295Samples.zip") )
 ###Dowload all files from NKI
 lapply(urlList, function(x) {
-	download.file(x, destfile=paste("../extdata/vanDeVijver/", gsub(".+/", "", x), sep=""),
+	download.file(x, destfile=paste("./inst/extdata/vanDeVijver/", gsub(".+/", "", x), sep=""),
 		      quiet = FALSE, mode = "w", cacheOK = TRUE)
 })
 @
@@ -398,12 +398,12 @@ require(readxl)
 filesVtVloc <- system.file("extdata/vantVeer", package = "seventyGeneData")
 dir(filesVtVloc)
 ###Create list of files to be read in
-filesVtV <- dir(filesVtVloc, full.names=TRUE, pattern="^ArrayData")
+filesVtV <- dir(filesVtVloc, full.names=TRUE, pattern="^ArrayData.*txt$")
 filesVtV
 @
 
 The code chunk below shows how to read and the phenotypic information
-associated with the samples analyzed in the van't Veer cohort:
+associated with the samples analyzed in the can't Veer cohort:
 
 <<assembleVantVeer2, eval=TRUE, echo=TRUE, cache=FALSE>>=
 myFile <- system.file("extdata/vantVeer", "415530a-s8.xls", 
