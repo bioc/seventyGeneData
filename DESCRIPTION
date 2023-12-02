@@ -16,23 +16,25 @@ Authors@R: c(
         ),
         person(
             "Claudio", "Zanettini",
-            role = c("aut")
+            email = "claudio.zanettini@gmail.com",
+            role = c("aut", "ctb")
         ),
         person(
-            "Lucio Rezende", "Queiroz",
+            "Lucio", "Queiroz",
             email = "luciorqueiroz@gmail.com",
-            role = c("aut"),
+            role = c("aut", "ctb"),
             comment = c(ORCID = "0000-0002-6090-1834")
         )
     )
 Depends: R (>= 2.13.0)
 Suggests: 
     Biobase,
-    readxls,
     limma,
     breastCancerNKI,
     knitr,
-    rmarkdown
+    rmarkdown,
+    readxl,
+    BiocStyle
 License: Artistic-2.0
 URL: https://bioconductor.org/packages/release/data/experiment/html/seventyGeneData.html
 LazyLoad: yes
