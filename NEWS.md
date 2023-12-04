@@ -1,3 +1,6 @@
+# seventyGeneData 1.39.3
+* Add `data-raw` directory for `data` generation scripts.
+
 # seventyGeneData 1.39.2
 
 * Initial modernization of the package.
