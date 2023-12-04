@@ -4,13 +4,42 @@ Title: ExpressionSets from the van't Veer and Van de
       Vijver breast cancer studies
 Version: 1.38.1
 Date: 2013-05-25
-Description: Gene expression data for the two breast cancer cohorts published by van't Veer and Van de Vijver in 2002
+Description: Gene expression data for the two breast cancer cohorts published
+    by van't Veer and Van de Vijver in 2002.
 biocViews: ExperimentData, CancerData, BreastCancerData, MicroarrayData
-Author: Luigi Marchionni <marchion@jhu.edu>
-Maintainer: Luigi Marchionni <marchion@jhu.edu>
+Authors@R: c(
+        person(
+            "Luigi", "Marchionni",
+            email = "lum403@med.cornell.edu",
+            role = c("aut", "cre"),
+            comment = c(ORCID = "0000-0002-7336-8071")
+        ),
+        person(
+            "Claudio", "Zanettini",
+            email = "claudio.zanettini@gmail.com",
+            role = c("aut", "ctb")
+        ),
+        person(
+            "Lucio", "Queiroz",
+            email = "luciorqueiroz@gmail.com",
+            role = c("aut", "ctb"),
+            comment = c(ORCID = "0000-0002-6090-1834")
+        )
+    )
 Depends: R (>= 2.13.0)
-Suggests: Biobase, readxl, limma, breastCancerNKI
+Suggests: 
+    Biobase,
+    limma,
+    breastCancerNKI,
+    knitr,
+    rmarkdown,
+    readxl,
+    BiocStyle
 License: Artistic-2.0
-URL: http://luigimarchionni.org/breastTSP.html
+URL: https://bioconductor.org/packages/release/data/experiment/html/seventyGeneData.html
 LazyLoad: yes
 Packaged: 2013-05-13 21:04:53 UTC; marchion
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+VignetteBuilder: knitr
